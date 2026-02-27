@@ -32,7 +32,7 @@
         .card h2:first-child { margin-top: 0; }
         .card p, .card li { color: #424245; font-size: 0.93em; }
         .card ul { padding-left: 20px; margin: 8px 0; }
-        .card li { margin-bottom: 4px; }
+        .card li { margin-bottom: 6px; }
         .updated { color: #86868b; font-size: 0.85em; margin-bottom: 20px; }
         .footer {
             text-align: center;
@@ -50,39 +50,58 @@
 
     <div class="container">
         <div class="card">
-            <p class="updated">最後更新日期：2025 年 12 月 1 日</p>
+            <p class="updated">最後更新日期：2026 年 2 月 27 日</p>
 
             <h2>概述</h2>
-            <p>CalThings（以下稱「本應用程式」）尊重並保護您的隱私。本隱私權政策說明本應用程式如何收集、使用及保護您的資訊。</p>
+            <p>CalThings（以下稱「本應用程式」）深度重視您的隱私權。本隱私權政策說明我們如何處理您的個人資訊。</p>
 
-            <h2>資料儲存</h2>
-            <p>您在本應用程式中建立的所有記帳紀錄、記事、分類及預算等資料，皆儲存於您的裝置本機（使用 Core Data），不會上傳至任何外部伺服器或雲端服務。</p>
-
-            <h2>我們收集的資訊</h2>
-            <p>本應用程式本身不會收集您的個人身份資訊。但我們使用以下第三方服務，這些服務可能會收集匿名的使用資料：</p>
+            <h2>資料收集</h2>
             <ul>
-                <li><strong>Firebase Analytics</strong> — 收集匿名的應用程式使用統計資料（如開啟次數、功能使用頻率），用於改善應用程式體驗。</li>
-                <li><strong>Firebase Cloud Messaging</strong> — 用於發送推播通知，需要裝置的推播 Token。</li>
-                <li><strong>Firebase Remote Config</strong> — 用於遠端調整應用程式設定。</li>
+                <li>CalThings 不會收集任何個人資料</li>
+                <li>所有記帳與記事資料僅儲存在您的裝置上</li>
+                <li>我們不會存取或上傳您的財務資訊</li>
+                <li>應用程式不需要網路連線即可正常運作</li>
             </ul>
 
-            <h2>推播通知</h2>
-            <p>本應用程式提供本地提醒及遠端推播通知功能。您可以在系統設定中隨時關閉通知權限。</p>
+            <h2>資料儲存</h2>
+            <ul>
+                <li>所有資料使用 iOS 內建的 Core Data 儲存在本地裝置</li>
+                <li>刪除應用程式時，所有資料將一併移除</li>
+                <li>支援 CSV 匯出功能，讓您完全控制自己的資料</li>
+            </ul>
+
+            <h2>第三方服務</h2>
+            <p>本應用程式使用以下第三方服務，這些服務可能會收集匿名的使用資料：</p>
+            <ul>
+                <li><strong>Firebase Analytics</strong> — 收集匿名使用統計（如功能使用頻率），不連結個人身份</li>
+                <li><strong>Firebase Cloud Messaging</strong> — 用於發送推播通知，僅使用裝置的推播 Token</li>
+                <li><strong>Firebase Remote Config</strong> — 用於遠端調整應用程式設定，不收集個人資料</li>
+                <li><strong>Apple StoreKit</strong> — 內購訂閱由 Apple 處理，本應用程式不會存取您的付款資訊</li>
+                <li>不使用任何第三方廣告服務</li>
+            </ul>
+
+            <h2>權限使用</h2>
+            <p>本應用程式可能會請求以下權限，所有權限皆為可選，拒絕授權不影響基本記帳與記事功能：</p>
+            <ul>
+                <li><strong>通知權限</strong> — 用於記帳提醒與推播通知</li>
+                <li><strong>相機權限</strong> — 用於拍攝發票或收據照片附加至帳單</li>
+                <li><strong>照片圖庫權限</strong> — 用於從相簿選擇照片附加至帳單</li>
+                <li><strong>日曆權限</strong> — 用於在記事列表中顯示今日行程</li>
+                <li><strong>提醒事項權限</strong> — 用於在記事列表中顯示待辦事項</li>
+            </ul>
 
             <h2>內購與訂閱</h2>
             <p>本應用程式透過 Apple 的 StoreKit 提供訂閱服務。所有付款資訊由 Apple 處理，本應用程式不會存取您的付款資訊。</p>
-
-            <h2>資料匯出</h2>
-            <p>本應用程式提供 CSV 匯出功能，讓您備份資料。匯出的檔案儲存在您選擇的位置，本應用程式不會傳送這些檔案至任何伺服器。</p>
 
             <h2>兒童隱私</h2>
             <p>本應用程式不針對 13 歲以下兒童，也不會刻意收集兒童的個人資訊。</p>
 
             <h2>隱私權政策的變更</h2>
-            <p>本隱私權政策可能會不定期更新。更新後的政策將在本頁面公佈，並更新「最後更新日期」。</p>
+            <p>本隱私權政策可能會根據法律要求或功能更新進行修正。重大變更將在應用程式內提前通知。</p>
 
             <h2>聯絡我們</h2>
-            <p>如果您對本隱私權政策有任何疑問，請聯繫：<a href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a></p>
+            <p>如有隱私相關問題，請聯繫：<a href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a></p>
+            <p>我們會在 48 小時內回覆您的查詢。您可以要求查看、修正或刪除相關資料。</p>
         </div>
     </div>
 
