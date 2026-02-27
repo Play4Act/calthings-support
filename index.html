@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CalThings - 支援中心</title>
+    <title>CalThings - Support</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -20,6 +20,29 @@
         }
         .header h1 { font-size: 2.4em; font-weight: 700; margin-bottom: 8px; }
         .header p { font-size: 1.1em; opacity: 0.9; }
+        .lang-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 4px 14px;
+            border-radius: 16px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .lang-btn:hover { background: rgba(255,255,255,0.35); }
+        .lang-btn.active {
+            background: white;
+            color: #007AFF;
+            border-color: white;
+            font-weight: 600;
+        }
         .container { max-width: 720px; margin: 0 auto; padding: 32px 20px 60px; }
         .card {
             background: white;
@@ -59,67 +82,179 @@
             font-size: 0.82em;
         }
         .footer a { color: #86868b; }
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>CalThings</h1>
-        <p>智慧記帳・輕鬆生活</p>
+        <p id="header-subtitle">智慧記帳・輕鬆生活</p>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="switchLang('zh')">繁體中文</button>
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+        </div>
     </div>
 
     <div class="container">
-        <div class="card">
-            <h2>📱 關於 CalThings</h2>
-            <p>CalThings 是一款簡潔好用的 iOS 記帳與記事應用程式，幫助您輕鬆管理日常收支、設定預算、撰寫備忘錄，並整合農曆顯示與提醒功能。</p>
-            <ul style="margin-top: 12px;">
-                <li>快速記帳 — POS 風格介面，直覺操作</li>
-                <li>預算管理 — 設定分類預算，即時追蹤花費</li>
-                <li>記事功能 — 備忘錄、標籤分類、釘選功能</li>
-                <li>統計分析 — 收支趨勢圖表，掌握財務狀況</li>
-                <li>多幣別支援 — 外幣記帳，自動匯率換算</li>
-                <li>資料備份 — CSV 匯入匯出，安心保存資料</li>
-            </ul>
+        <!-- 繁體中文 -->
+        <div class="lang-content active" id="lang-zh">
+            <div class="card">
+                <h2>📱 關於 CalThings</h2>
+                <p>CalThings 是一款簡潔好用的 iOS 記帳與記事應用程式，幫助您輕鬆管理日常收支、設定預算、撰寫備忘錄，並整合農曆顯示與提醒功能。</p>
+                <ul style="margin-top: 12px;">
+                    <li>快速記帳 — POS 風格介面，直覺操作</li>
+                    <li>預算管理 — 設定分類預算，即時追蹤花費</li>
+                    <li>記事功能 — 備忘錄、標籤分類、釘選功能</li>
+                    <li>統計分析 — 收支趨勢圖表，掌握財務狀況</li>
+                    <li>多幣別支援 — 外幣記帳，自動匯率換算</li>
+                    <li>資料備份 — CSV 匯入匯出，安心保存資料</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>❓ 常見問題</h2>
+                <div class="faq-item">
+                    <h3>如何新增一筆記帳？</h3>
+                    <p>點擊主頁的「+」按鈕，即可透過 POS 風格介面快速輸入金額、選擇分類與商店，完成記帳。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>如何設定預算？</h3>
+                    <p>前往「記帳」頁面，點擊右上角選單中的「預算管理」，即可為不同分類設定每月預算上限。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>如何備份或還原資料？</h3>
+                    <p>前往「設定」>「資料管理」，可將記帳與記事資料匯出為 CSV 檔案，也可從 CSV 檔案匯入還原。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>支援哪些幣別？</h3>
+                    <p>CalThings 支援多種常見幣別（TWD、USD、JPY、EUR 等），可在記帳時選擇幣別並自動換算為主幣。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>資料會上傳到雲端嗎？</h3>
+                    <p>您的所有記帳與記事資料皆儲存在裝置本機，不會上傳至任何伺服器。</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📧 聯絡我們</h2>
+                <p>如果您有任何問題、建議或回饋，歡迎來信：</p>
+                <a class="contact-link" href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>❓ 常見問題</h2>
-
-            <div class="faq-item">
-                <h3>如何新增一筆記帳？</h3>
-                <p>點擊主頁的「+」按鈕，即可透過 POS 風格介面快速輸入金額、選擇分類與商店，完成記帳。</p>
+        <!-- English -->
+        <div class="lang-content" id="lang-en">
+            <div class="card">
+                <h2>📱 About CalThings</h2>
+                <p>CalThings is a clean and easy-to-use iOS app for expense tracking and note-taking. It helps you manage daily income and expenses, set budgets, write memos, with integrated lunar calendar display and reminder features.</p>
+                <ul style="margin-top: 12px;">
+                    <li>Quick Entry — POS-style interface, intuitive operation</li>
+                    <li>Budget Management — Set category budgets, track spending in real time</li>
+                    <li>Notes — Memos, tag categories, pin feature</li>
+                    <li>Statistics — Income & expense trend charts</li>
+                    <li>Multi-Currency — Foreign currency recording with auto exchange rate conversion</li>
+                    <li>Data Backup — CSV import & export for safe data storage</li>
+                </ul>
             </div>
 
-            <div class="faq-item">
-                <h3>如何設定預算？</h3>
-                <p>前往「記帳」頁面，點擊右上角選單中的「預算管理」，即可為不同分類設定每月預算上限。</p>
+            <div class="card">
+                <h2>❓ FAQ</h2>
+                <div class="faq-item">
+                    <h3>How do I add a new expense?</h3>
+                    <p>Tap the "+" button on the home page to quickly enter the amount, select a category and store using the POS-style interface.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do I set a budget?</h3>
+                    <p>Go to the "Expenses" tab, tap the menu in the top right corner and select "Budget Management" to set monthly budget limits for different categories.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do I back up or restore data?</h3>
+                    <p>Go to "Settings" > "Data Management" to export your expense and note data as CSV files, or import from CSV files to restore.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Which currencies are supported?</h3>
+                    <p>CalThings supports many common currencies (TWD, USD, JPY, EUR, etc.). You can select a currency when recording expenses and it will auto-convert to your primary currency.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is my data uploaded to the cloud?</h3>
+                    <p>All your expense and note data is stored locally on your device and is never uploaded to any server.</p>
+                </div>
             </div>
 
-            <div class="faq-item">
-                <h3>如何備份或還原資料？</h3>
-                <p>前往「設定」>「資料管理」，可將記帳與記事資料匯出為 CSV 檔案，也可從 CSV 檔案匯入還原。</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>支援哪些幣別？</h3>
-                <p>CalThings 支援多種常見幣別（TWD、USD、JPY、EUR 等），可在記帳時選擇幣別並自動換算為主幣。</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>資料會上傳到雲端嗎？</h3>
-                <p>您的所有記帳與記事資料皆儲存在裝置本機，不會上傳至任何伺服器。</p>
+            <div class="card">
+                <h2>📧 Contact Us</h2>
+                <p>If you have any questions, suggestions, or feedback, feel free to reach out:</p>
+                <a class="contact-link" href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a>
             </div>
         </div>
 
-        <div class="card">
-            <h2>📧 聯絡我們</h2>
-            <p>如果您有任何問題、建議或回饋，歡迎來信：</p>
-            <a class="contact-link" href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a>
+        <!-- 日本語 -->
+        <div class="lang-content" id="lang-ja">
+            <div class="card">
+                <h2>📱 CalThings について</h2>
+                <p>CalThings は、シンプルで使いやすい iOS 向け家計簿・メモアプリです。日々の収支管理、予算設定、メモ作成を簡単に行え、旧暦表示やリマインダー機能も統合しています。</p>
+                <ul style="margin-top: 12px;">
+                    <li>クイック入力 — POS スタイルの直感的なインターフェース</li>
+                    <li>予算管理 — カテゴリ別予算を設定し、支出をリアルタイムで追跡</li>
+                    <li>メモ機能 — メモ、タグ分類、ピン留め機能</li>
+                    <li>統計分析 — 収支トレンドチャートで家計を把握</li>
+                    <li>マルチ通貨対応 — 外貨記録と自動為替レート換算</li>
+                    <li>データバックアップ — CSV インポート・エクスポートで安心保存</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>❓ よくある質問</h2>
+                <div class="faq-item">
+                    <h3>新しい支出を追加するには？</h3>
+                    <p>ホーム画面の「+」ボタンをタップすると、POS スタイルのインターフェースで金額入力、カテゴリ・店舗の選択ができます。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>予算を設定するには？</h3>
+                    <p>「家計簿」タブで右上のメニューから「予算管理」を選択すると、カテゴリ別に月間予算の上限を設定できます。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>データのバックアップや復元は？</h3>
+                    <p>「設定」>「データ管理」から、家計簿やメモのデータを CSV ファイルとしてエクスポートしたり、CSV ファイルからインポートして復元できます。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>対応している通貨は？</h3>
+                    <p>CalThings は多くの主要通貨（TWD、USD、JPY、EUR など）に対応しています。記録時に通貨を選択すると、主通貨に自動換算されます。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>データはクラウドにアップロードされますか？</h3>
+                    <p>すべての家計簿・メモデータはデバイス本体に保存され、サーバーにアップロードされることはありません。</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📧 お問い合わせ</h2>
+                <p>ご質問、ご提案、フィードバックがございましたら、お気軽にご連絡ください：</p>
+                <a class="contact-link" href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a>
+            </div>
         </div>
     </div>
 
     <div class="footer">
         <p>&copy; 2025 CalThings. All rights reserved.</p>
-        <p style="margin-top: 4px;"><a href="privacy.html">隱私權政策</a></p>
+        <p style="margin-top: 4px;"><a href="privacy.html" id="privacy-link">隱私權政策</a></p>
     </div>
+
+    <script>
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('lang-' + lang).classList.add('active');
+            event.target.classList.add('active');
+
+            const subtitles = { zh: '智慧記帳・輕鬆生活', en: 'Smart Expense Tracking, Simple Life', ja: 'スマート家計簿・シンプルライフ' };
+            const privacyLinks = { zh: '隱私權政策', en: 'Privacy Policy', ja: 'プライバシーポリシー' };
+
+            document.getElementById('header-subtitle').textContent = subtitles[lang];
+            document.getElementById('privacy-link').textContent = privacyLinks[lang];
+        }
+    </script>
 </body>
 </html>
