@@ -59,6 +59,23 @@
         .card p, .card li { color: #424245; font-size: 0.95em; }
         .card ul { padding-left: 20px; }
         .card li { margin-bottom: 8px; }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .feature-item {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 14px;
+        }
+        .feature-item .icon { font-size: 1.4em; margin-bottom: 4px; }
+        .feature-item .title { font-weight: 600; font-size: 0.9em; color: #1d1d1f; }
+        .feature-item .desc { font-size: 0.82em; color: #6e6e73; margin-top: 2px; }
+        @media (max-width: 480px) {
+            .feature-grid { grid-template-columns: 1fr; }
+        }
         .faq-item { margin-bottom: 20px; }
         .faq-item:last-child { margin-bottom: 0; }
         .faq-item h3 { font-size: 1em; font-weight: 600; margin-bottom: 6px; color: #1d1d1f; }
@@ -102,15 +119,64 @@
         <div class="lang-content active" id="lang-zh">
             <div class="card">
                 <h2>📱 關於 CalThings</h2>
-                <p>CalThings 是一款簡潔好用的 iOS 記帳與記事應用程式，幫助您輕鬆管理日常收支、設定預算、撰寫備忘錄，並整合農曆顯示與提醒功能。</p>
-                <ul style="margin-top: 12px;">
-                    <li>快速記帳 — POS 風格介面，直覺操作</li>
-                    <li>預算管理 — 設定分類預算，即時追蹤花費</li>
-                    <li>記事功能 — 備忘錄、標籤分類、釘選功能</li>
-                    <li>統計分析 — 收支趨勢圖表，掌握財務狀況</li>
-                    <li>多幣別支援 — 外幣記帳，自動匯率換算</li>
-                    <li>資料備份 — CSV 匯入匯出，安心保存資料</li>
-                </ul>
+                <p>CalThings 是一款功能完整的 iOS 記帳與記事應用程式，採用現代 SwiftUI 架構，幫助您輕鬆管理日常收支、設定預算、撰寫備忘錄，並整合農曆顯示與智慧提醒功能。</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">💰</div>
+                        <div class="title">POS 風格記帳</div>
+                        <div class="desc">直覺式介面，快速輸入金額、選擇分類與商店</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📊</div>
+                        <div class="title">預算管理</div>
+                        <div class="desc">分類預算設定，即時追蹤花費進度</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📝</div>
+                        <div class="title">記事功能</div>
+                        <div class="desc">備忘錄、標籤分類、釘選，關聯記帳記錄</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📈</div>
+                        <div class="title">統計分析</div>
+                        <div class="desc">收支趨勢圖表、分類餅圖，掌握財務全貌</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🌙</div>
+                        <div class="title">農曆整合</div>
+                        <div class="desc">農民曆顯示，中文日期格式化</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🔔</div>
+                        <div class="title">智慧提醒</div>
+                        <div class="desc">一次性、每日、每週、每月等週期性提醒</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">💱</div>
+                        <div class="title">多幣別支援</div>
+                        <div class="desc">外幣記帳，自動匯率換算為主幣</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🏷️</div>
+                        <div class="title">自訂分類</div>
+                        <div class="desc">新增、編輯收支分類，自選圖示與顏色</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🌗</div>
+                        <div class="title">深色模式</div>
+                        <div class="desc">支援淺色與深色主題，自動跟隨系統</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📁</div>
+                        <div class="title">資料備份</div>
+                        <div class="desc">CSV 匯入匯出，安心保存與還原資料</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>⭐ 進階會員</h2>
+                <p>升級進階會員，解鎖完整統計分析功能，包含收支趨勢圖表與分類餅圖，讓您全面掌握財務狀況。</p>
             </div>
 
             <div class="card">
@@ -121,7 +187,15 @@
                 </div>
                 <div class="faq-item">
                     <h3>如何設定預算？</h3>
-                    <p>前往「記帳」頁面，點擊右上角選單中的「預算管理」，即可為不同分類設定每月預算上限。</p>
+                    <p>前往「記帳」頁面，點擊右上角選單中的「預算管理」，即可為不同分類設定每日、每週、每月或每年的預算上限。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>如何新增或自訂分類？</h3>
+                    <p>前往「設定」中的分類管理，可新增自訂收支分類，自選圖示與顏色，也可編輯預設分類的名稱和圖示。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>如何設定提醒？</h3>
+                    <p>新增或編輯記帳 / 記事時，開啟提醒功能即可設定提醒時間。支援一次性、每日、每週、每月、每年及自訂天數等多種週期。</p>
                 </div>
                 <div class="faq-item">
                     <h3>如何備份或還原資料？</h3>
@@ -130,6 +204,10 @@
                 <div class="faq-item">
                     <h3>支援哪些幣別？</h3>
                     <p>CalThings 支援多種常見幣別（TWD、USD、JPY、EUR 等），可在記帳時選擇幣別並自動換算為主幣。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>統計分析功能需要付費嗎？</h3>
+                    <p>是的，完整的統計分析功能（含趨勢圖表與分類餅圖）為進階會員專屬功能，可透過應用內訂閱解鎖。</p>
                 </div>
                 <div class="faq-item">
                     <h3>資料會上傳到雲端嗎？</h3>
@@ -148,15 +226,64 @@
         <div class="lang-content" id="lang-en">
             <div class="card">
                 <h2>📱 About CalThings</h2>
-                <p>CalThings is a clean and easy-to-use iOS app for expense tracking and note-taking. It helps you manage daily income and expenses, set budgets, write memos, with integrated lunar calendar display and reminder features.</p>
-                <ul style="margin-top: 12px;">
-                    <li>Quick Entry — POS-style interface, intuitive operation</li>
-                    <li>Budget Management — Set category budgets, track spending in real time</li>
-                    <li>Notes — Memos, tag categories, pin feature</li>
-                    <li>Statistics — Income & expense trend charts</li>
-                    <li>Multi-Currency — Foreign currency recording with auto exchange rate conversion</li>
-                    <li>Data Backup — CSV import & export for safe data storage</li>
-                </ul>
+                <p>CalThings is a full-featured iOS app for expense tracking and note-taking, built with modern SwiftUI. It helps you manage daily income and expenses, set budgets, write memos, with integrated lunar calendar display and smart reminder features.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">💰</div>
+                        <div class="title">POS-Style Entry</div>
+                        <div class="desc">Intuitive interface for quick amount input, category & store selection</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📊</div>
+                        <div class="title">Budget Management</div>
+                        <div class="desc">Set category budgets, track spending in real time</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📝</div>
+                        <div class="title">Notes</div>
+                        <div class="desc">Memos, tag categories, pin feature, linked to expenses</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📈</div>
+                        <div class="title">Statistics</div>
+                        <div class="desc">Income & expense trend charts, category pie charts</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🌙</div>
+                        <div class="title">Lunar Calendar</div>
+                        <div class="desc">Traditional lunar calendar display with Chinese date formatting</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🔔</div>
+                        <div class="title">Smart Reminders</div>
+                        <div class="desc">One-time, daily, weekly, monthly & custom recurring reminders</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">💱</div>
+                        <div class="title">Multi-Currency</div>
+                        <div class="desc">Foreign currency recording with auto exchange rate conversion</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🏷️</div>
+                        <div class="title">Custom Categories</div>
+                        <div class="desc">Add & edit income/expense categories with custom icons & colors</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🌗</div>
+                        <div class="title">Dark Mode</div>
+                        <div class="desc">Light and dark themes, follows system appearance</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📁</div>
+                        <div class="title">Data Backup</div>
+                        <div class="desc">CSV import & export for safe data storage and restore</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>⭐ Premium Membership</h2>
+                <p>Upgrade to Premium to unlock full statistics and analytics, including trend charts and category pie charts for a complete view of your finances.</p>
             </div>
 
             <div class="card">
@@ -167,7 +294,15 @@
                 </div>
                 <div class="faq-item">
                     <h3>How do I set a budget?</h3>
-                    <p>Go to the "Expenses" tab, tap the menu in the top right corner and select "Budget Management" to set monthly budget limits for different categories.</p>
+                    <p>Go to the "Expenses" tab, tap the menu in the top right corner and select "Budget Management" to set daily, weekly, monthly, or yearly budget limits for different categories.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do I add or customize categories?</h3>
+                    <p>Go to category management in Settings to add custom income/expense categories with your choice of icon and color. You can also edit the name and icon of default categories.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do I set reminders?</h3>
+                    <p>When adding or editing an expense or note, enable the reminder feature to set a reminder time. Supports one-time, daily, weekly, monthly, yearly, and custom day intervals.</p>
                 </div>
                 <div class="faq-item">
                     <h3>How do I back up or restore data?</h3>
@@ -176,6 +311,10 @@
                 <div class="faq-item">
                     <h3>Which currencies are supported?</h3>
                     <p>CalThings supports many common currencies (TWD, USD, JPY, EUR, etc.). You can select a currency when recording expenses and it will auto-convert to your primary currency.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is the statistics feature paid?</h3>
+                    <p>Yes, full statistics and analytics (including trend charts and category pie charts) are exclusive to Premium members and can be unlocked via in-app subscription.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Is my data uploaded to the cloud?</h3>
@@ -194,15 +333,64 @@
         <div class="lang-content" id="lang-ja">
             <div class="card">
                 <h2>📱 CalThings について</h2>
-                <p>CalThings は、シンプルで使いやすい iOS 向け家計簿・メモアプリです。日々の収支管理、予算設定、メモ作成を簡単に行え、旧暦表示やリマインダー機能も統合しています。</p>
-                <ul style="margin-top: 12px;">
-                    <li>クイック入力 — POS スタイルの直感的なインターフェース</li>
-                    <li>予算管理 — カテゴリ別予算を設定し、支出をリアルタイムで追跡</li>
-                    <li>メモ機能 — メモ、タグ分類、ピン留め機能</li>
-                    <li>統計分析 — 収支トレンドチャートで家計を把握</li>
-                    <li>マルチ通貨対応 — 外貨記録と自動為替レート換算</li>
-                    <li>データバックアップ — CSV インポート・エクスポートで安心保存</li>
-                </ul>
+                <p>CalThings は、モダンな SwiftUI で構築された、フル機能の iOS 向け家計簿・メモアプリです。日々の収支管理、予算設定、メモ作成を簡単に行え、旧暦表示やスマートリマインダー機能も統合しています。</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">💰</div>
+                        <div class="title">POS スタイル入力</div>
+                        <div class="desc">直感的なインターフェースで金額・カテゴリ・店舗を素早く入力</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📊</div>
+                        <div class="title">予算管理</div>
+                        <div class="desc">カテゴリ別予算を設定し、支出をリアルタイムで追跡</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📝</div>
+                        <div class="title">メモ機能</div>
+                        <div class="desc">メモ、タグ分類、ピン留め、支出との連携</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📈</div>
+                        <div class="title">統計分析</div>
+                        <div class="desc">収支トレンドチャート、カテゴリ別円グラフ</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🌙</div>
+                        <div class="title">旧暦対応</div>
+                        <div class="desc">旧暦（農暦）表示、中国語日付フォーマット</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🔔</div>
+                        <div class="title">スマートリマインダー</div>
+                        <div class="desc">1回限り、毎日、毎週、毎月など多様な周期設定</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">💱</div>
+                        <div class="title">マルチ通貨対応</div>
+                        <div class="desc">外貨記録と自動為替レート換算</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🏷️</div>
+                        <div class="title">カスタムカテゴリ</div>
+                        <div class="desc">収支カテゴリを追加・編集、アイコンと色を自由に選択</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🌗</div>
+                        <div class="title">ダークモード</div>
+                        <div class="desc">ライト・ダークテーマ対応、システム設定に自動追従</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📁</div>
+                        <div class="title">データバックアップ</div>
+                        <div class="desc">CSV インポート・エクスポートで安心保存・復元</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>⭐ プレミアム会員</h2>
+                <p>プレミアムにアップグレードすると、トレンドチャートやカテゴリ別円グラフなど、完全な統計分析機能をご利用いただけます。</p>
             </div>
 
             <div class="card">
@@ -213,7 +401,15 @@
                 </div>
                 <div class="faq-item">
                     <h3>予算を設定するには？</h3>
-                    <p>「家計簿」タブで右上のメニューから「予算管理」を選択すると、カテゴリ別に月間予算の上限を設定できます。</p>
+                    <p>「家計簿」タブで右上のメニューから「予算管理」を選択すると、カテゴリ別に日次・週次・月次・年次の予算上限を設定できます。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>カテゴリを追加・カスタマイズするには？</h3>
+                    <p>設定のカテゴリ管理から、収支カテゴリを追加できます。アイコンと色を自由に選択でき、デフォルトカテゴリの名前やアイコンも編集可能です。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>リマインダーを設定するには？</h3>
+                    <p>支出やメモの追加・編集時にリマインダー機能をオンにすると、通知時間を設定できます。1回限り、毎日、毎週、毎月、毎年、カスタム日数に対応しています。</p>
                 </div>
                 <div class="faq-item">
                     <h3>データのバックアップや復元は？</h3>
@@ -222,6 +418,10 @@
                 <div class="faq-item">
                     <h3>対応している通貨は？</h3>
                     <p>CalThings は多くの主要通貨（TWD、USD、JPY、EUR など）に対応しています。記録時に通貨を選択すると、主通貨に自動換算されます。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>統計分析機能は有料ですか？</h3>
+                    <p>はい、完全な統計分析機能（トレンドチャート、カテゴリ別円グラフなど）はプレミアム会員専用機能で、アプリ内サブスクリプションで解除できます。</p>
                 </div>
                 <div class="faq-item">
                     <h3>データはクラウドにアップロードされますか？</h3>
