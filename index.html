@@ -5,108 +5,322 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CalThings - Support</title>
     <style>
+        :root {
+            --ocean-deep: #2173B3;
+            --ocean-blue: #409ED9;
+            --ocean-light: #73C2ED;
+            --ocean-foam: #B3DEF5;
+            --coral: #FF7D4F;
+            --seaweed: #33C791;
+            --sunshine: #FFD400;
+            --tropical: #8F45AD;
+            --mint: #4FDDC2;
+            --warm-white: #FFFDF5;
+            --cream: #FAE6C8;
+            --light-yellow: #FCECD5;
+            --text-primary: #1D2226;
+            --text-secondary: #4B5563;
+            --text-muted: #86868b;
+            --card-bg: #ffffff;
+            --border: rgba(33,115,179,0.08);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            color: #1d1d1f;
-            background: #f5f5f7;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            color: var(--text-primary);
+            background: var(--warm-white);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
-        .header {
-            background: linear-gradient(135deg, #007AFF, #5856D6);
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(160deg, var(--ocean-deep) 0%, var(--ocean-blue) 40%, var(--ocean-light) 100%);
             color: white;
             text-align: center;
-            padding: 60px 20px 48px;
+            padding: 72px 24px 56px;
+            position: relative;
+            overflow: hidden;
         }
-        .header h1 { font-size: 2.4em; font-weight: 700; margin-bottom: 8px; }
-        .header p { font-size: 1.1em; opacity: 0.9; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -20%;
+            width: 140%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2em;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        .hero h1 {
+            font-size: 2.6em;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .hero-subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-weight: 400;
+        }
         .lang-switcher {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-top: 16px;
+            gap: 6px;
+            margin-top: 20px;
         }
         .lang-btn {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
             color: white;
-            border: 1px solid rgba(255,255,255,0.4);
-            padding: 4px 14px;
-            border-radius: 16px;
-            font-size: 0.85em;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 0.82em;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.25s ease;
+            font-weight: 500;
         }
-        .lang-btn:hover { background: rgba(255,255,255,0.35); }
+        .lang-btn:hover { background: rgba(255,255,255,0.28); }
         .lang-btn.active {
             background: white;
-            color: #007AFF;
+            color: var(--ocean-deep);
             border-color: white;
             font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        .container { max-width: 720px; margin: 0 auto; padding: 32px 20px 60px; }
+
+        /* Container */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 36px 20px 64px;
+        }
+
+        /* Cards */
         .card {
-            background: white;
-            border-radius: 16px;
+            background: var(--card-bg);
+            border-radius: 20px;
             padding: 28px;
             margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(33,115,179,0.04);
+            border: 1px solid var(--border);
         }
-        .card h2 {
-            font-size: 1.3em;
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 16px;
-            color: #1d1d1f;
         }
-        .card p, .card li { color: #424245; font-size: 0.95em; }
-        .card ul { padding-left: 20px; }
-        .card li { margin-bottom: 8px; }
+        .card-header-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+        .card-header h2 {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .card p { color: var(--text-secondary); font-size: 0.95em; }
+
+        /* Feature Grid */
         .feature-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 12px;
+            gap: 10px;
+            margin-top: 16px;
         }
         .feature-item {
-            background: #f5f5f7;
-            border-radius: 12px;
-            padding: 14px;
+            background: linear-gradient(135deg, #f8fbff 0%, #f0f7ff 100%);
+            border-radius: 14px;
+            padding: 16px;
+            border: 1px solid rgba(64,158,217,0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .feature-item .icon { font-size: 1.4em; margin-bottom: 4px; }
-        .feature-item .title { font-weight: 600; font-size: 0.9em; color: #1d1d1f; }
-        .feature-item .desc { font-size: 0.82em; color: #6e6e73; margin-top: 2px; }
-        @media (max-width: 480px) {
+        .feature-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(33,115,179,0.08);
+        }
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15em;
+            margin-bottom: 8px;
+        }
+        .fi-blue { background: linear-gradient(135deg, #E8F4FD, #D0EBFA); }
+        .fi-coral { background: linear-gradient(135deg, #FFF0EB, #FFE0D5); }
+        .fi-green { background: linear-gradient(135deg, #E6F9F1, #CCF2E3); }
+        .fi-yellow { background: linear-gradient(135deg, #FFF9E0, #FFF3C4); }
+        .fi-purple { background: linear-gradient(135deg, #F3E8FA, #E8D5F5); }
+        .fi-mint { background: linear-gradient(135deg, #E6FBF5, #CCF7EC); }
+        .feature-item .title {
+            font-weight: 600;
+            font-size: 0.88em;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        .feature-item .desc {
+            font-size: 0.78em;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+        @media (max-width: 520px) {
             .feature-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2em; }
+            .hero { padding: 56px 20px 44px; }
+            .container { padding: 24px 16px 48px; }
+            .card { padding: 22px; border-radius: 16px; }
         }
-        .faq-item { margin-bottom: 20px; }
-        .faq-item:last-child { margin-bottom: 0; }
-        .faq-item h3 { font-size: 1em; font-weight: 600; margin-bottom: 6px; color: #1d1d1f; }
-        .faq-item p { font-size: 0.93em; }
+
+        /* Premium Banner */
+        .premium-banner {
+            background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-blue) 50%, var(--ocean-light) 100%);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 4px 20px rgba(33,115,179,0.2);
+        }
+        .premium-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 70%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .premium-banner .card-header-icon {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .premium-banner h2 { color: white; }
+        .premium-banner p { color: rgba(255,255,255,0.9); }
+        .premium-features {
+            display: flex;
+            gap: 16px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+        .premium-tag {
+            background: rgba(255,255,255,0.18);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.82em;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        /* FAQ */
+        .faq-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f2;
+        }
+        .faq-item:first-child { padding-top: 0; }
+        .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .faq-item h3 {
+            font-size: 0.95em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .faq-item h3::before {
+            content: 'Q';
+            background: var(--ocean-foam);
+            color: var(--ocean-deep);
+            font-size: 0.75em;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .faq-item p {
+            font-size: 0.9em;
+            padding-left: 30px;
+        }
+
+        /* Contact */
         .contact-link {
-            display: inline-block;
-            background: #007AFF;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--ocean-deep), var(--ocean-blue));
             color: white;
             text-decoration: none;
             padding: 12px 28px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 600;
-            font-size: 0.95em;
-            margin-top: 8px;
+            font-size: 0.92em;
+            margin-top: 12px;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(33,115,179,0.2);
         }
-        .contact-link:hover { background: #0066d6; }
+        .contact-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(33,115,179,0.3);
+        }
+
+        /* Footer */
         .footer {
             text-align: center;
-            padding: 24px 20px;
-            color: #86868b;
-            font-size: 0.82em;
+            padding: 28px 20px;
+            color: var(--text-muted);
+            font-size: 0.8em;
+            border-top: 1px solid #f0f0f2;
         }
-        .footer a { color: #86868b; }
+        .footer a {
+            color: var(--ocean-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer a:hover { text-decoration: underline; }
+
         .lang-content { display: none; }
         .lang-content.active { display: block; }
     </style>
 </head>
 <body>
-    <div class="header">
+    <div class="hero">
+        <div class="hero-icon">📒</div>
         <h1>CalThings</h1>
-        <p id="header-subtitle">智慧記帳・輕鬆生活</p>
+        <p class="hero-subtitle" id="header-subtitle">智慧記帳・輕鬆生活</p>
         <div class="lang-switcher">
             <button class="lang-btn active" onclick="switchLang('zh')">繁體中文</button>
             <button class="lang-btn" onclick="switchLang('en')">English</button>
@@ -118,69 +332,83 @@
         <!-- 繁體中文 -->
         <div class="lang-content active" id="lang-zh">
             <div class="card">
-                <h2>📱 關於 CalThings</h2>
+                <div class="card-header">
+                    <div class="card-header-icon fi-blue">📱</div>
+                    <h2>關於 CalThings</h2>
+                </div>
                 <p>CalThings 是一款功能完整的 iOS 記帳與記事應用程式，採用現代 SwiftUI 架構，幫助您輕鬆管理日常收支、設定預算、撰寫備忘錄，並整合農曆顯示與智慧提醒功能。</p>
                 <div class="feature-grid">
                     <div class="feature-item">
-                        <div class="icon">💰</div>
+                        <div class="feature-icon fi-coral">💰</div>
                         <div class="title">POS 風格記帳</div>
                         <div class="desc">直覺式介面，快速輸入金額、選擇分類與商店</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📊</div>
+                        <div class="feature-icon fi-blue">📊</div>
                         <div class="title">預算管理</div>
                         <div class="desc">分類預算設定，即時追蹤花費進度</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📝</div>
+                        <div class="feature-icon fi-yellow">📝</div>
                         <div class="title">記事功能</div>
                         <div class="desc">備忘錄、標籤分類、釘選，關聯記帳記錄</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📈</div>
+                        <div class="feature-icon fi-green">📈</div>
                         <div class="title">統計分析</div>
                         <div class="desc">收支趨勢圖表、分類餅圖，掌握財務全貌</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🌙</div>
+                        <div class="feature-icon fi-purple">🌙</div>
                         <div class="title">農曆整合</div>
                         <div class="desc">農民曆顯示，中文日期格式化</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🔔</div>
+                        <div class="feature-icon fi-coral">🔔</div>
                         <div class="title">智慧提醒</div>
                         <div class="desc">一次性、每日、每週、每月等週期性提醒</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">💱</div>
+                        <div class="feature-icon fi-mint">💱</div>
                         <div class="title">多幣別支援</div>
                         <div class="desc">外幣記帳，自動匯率換算為主幣</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🏷️</div>
+                        <div class="feature-icon fi-blue">🏷️</div>
                         <div class="title">自訂分類</div>
                         <div class="desc">新增、編輯收支分類，自選圖示與顏色</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🌗</div>
+                        <div class="feature-icon fi-purple">🌗</div>
                         <div class="title">深色模式</div>
                         <div class="desc">支援淺色與深色主題，自動跟隨系統</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📁</div>
+                        <div class="feature-icon fi-green">📁</div>
                         <div class="title">資料備份</div>
                         <div class="desc">CSV 匯入匯出，安心保存與還原資料</div>
                     </div>
                 </div>
             </div>
 
-            <div class="card">
-                <h2>⭐ 進階會員</h2>
-                <p>升級進階會員，解鎖完整統計分析功能，包含收支趨勢圖表與分類餅圖，讓您全面掌握財務狀況。</p>
+            <div class="premium-banner">
+                <div class="card-header">
+                    <div class="card-header-icon">⭐</div>
+                    <h2>進階會員</h2>
+                </div>
+                <p>升級進階會員，解鎖完整統計分析功能，全面掌握您的財務狀況。</p>
+                <div class="premium-features">
+                    <span class="premium-tag">📈 趨勢圖表</span>
+                    <span class="premium-tag">🥧 分類餅圖</span>
+                    <span class="premium-tag">📊 收支分析</span>
+                </div>
             </div>
 
             <div class="card">
-                <h2>❓ 常見問題</h2>
+                <div class="card-header">
+                    <div class="card-header-icon fi-yellow">❓</div>
+                    <h2>常見問題</h2>
+                </div>
                 <div class="faq-item">
                     <h3>如何新增一筆記帳？</h3>
                     <p>點擊主頁的「+」按鈕，即可透過 POS 風格介面快速輸入金額、選擇分類與商店，完成記帳。</p>
@@ -216,78 +444,95 @@
             </div>
 
             <div class="card">
-                <h2>📧 聯絡我們</h2>
+                <div class="card-header">
+                    <div class="card-header-icon fi-blue">📧</div>
+                    <h2>聯絡我們</h2>
+                </div>
                 <p>如果您有任何問題、建議或回饋，歡迎來信：</p>
-                <a class="contact-link" href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a>
+                <a class="contact-link" href="mailto:play4act.app@gmail.com">✉️ play4act.app@gmail.com</a>
             </div>
         </div>
 
         <!-- English -->
         <div class="lang-content" id="lang-en">
             <div class="card">
-                <h2>📱 About CalThings</h2>
+                <div class="card-header">
+                    <div class="card-header-icon fi-blue">📱</div>
+                    <h2>About CalThings</h2>
+                </div>
                 <p>CalThings is a full-featured iOS app for expense tracking and note-taking, built with modern SwiftUI. It helps you manage daily income and expenses, set budgets, write memos, with integrated lunar calendar display and smart reminder features.</p>
                 <div class="feature-grid">
                     <div class="feature-item">
-                        <div class="icon">💰</div>
+                        <div class="feature-icon fi-coral">💰</div>
                         <div class="title">POS-Style Entry</div>
                         <div class="desc">Intuitive interface for quick amount input, category & store selection</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📊</div>
+                        <div class="feature-icon fi-blue">📊</div>
                         <div class="title">Budget Management</div>
                         <div class="desc">Set category budgets, track spending in real time</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📝</div>
+                        <div class="feature-icon fi-yellow">📝</div>
                         <div class="title">Notes</div>
                         <div class="desc">Memos, tag categories, pin feature, linked to expenses</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📈</div>
+                        <div class="feature-icon fi-green">📈</div>
                         <div class="title">Statistics</div>
                         <div class="desc">Income & expense trend charts, category pie charts</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🌙</div>
+                        <div class="feature-icon fi-purple">🌙</div>
                         <div class="title">Lunar Calendar</div>
                         <div class="desc">Traditional lunar calendar display with Chinese date formatting</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🔔</div>
+                        <div class="feature-icon fi-coral">🔔</div>
                         <div class="title">Smart Reminders</div>
                         <div class="desc">One-time, daily, weekly, monthly & custom recurring reminders</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">💱</div>
+                        <div class="feature-icon fi-mint">💱</div>
                         <div class="title">Multi-Currency</div>
                         <div class="desc">Foreign currency recording with auto exchange rate conversion</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🏷️</div>
+                        <div class="feature-icon fi-blue">🏷️</div>
                         <div class="title">Custom Categories</div>
                         <div class="desc">Add & edit income/expense categories with custom icons & colors</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🌗</div>
+                        <div class="feature-icon fi-purple">🌗</div>
                         <div class="title">Dark Mode</div>
                         <div class="desc">Light and dark themes, follows system appearance</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📁</div>
+                        <div class="feature-icon fi-green">📁</div>
                         <div class="title">Data Backup</div>
                         <div class="desc">CSV import & export for safe data storage and restore</div>
                     </div>
                 </div>
             </div>
 
-            <div class="card">
-                <h2>⭐ Premium Membership</h2>
-                <p>Upgrade to Premium to unlock full statistics and analytics, including trend charts and category pie charts for a complete view of your finances.</p>
+            <div class="premium-banner">
+                <div class="card-header">
+                    <div class="card-header-icon">⭐</div>
+                    <h2>Premium Membership</h2>
+                </div>
+                <p>Upgrade to Premium to unlock full statistics and analytics for a complete view of your finances.</p>
+                <div class="premium-features">
+                    <span class="premium-tag">📈 Trend Charts</span>
+                    <span class="premium-tag">🥧 Category Pie Charts</span>
+                    <span class="premium-tag">📊 Income & Expense Analysis</span>
+                </div>
             </div>
 
             <div class="card">
-                <h2>❓ FAQ</h2>
+                <div class="card-header">
+                    <div class="card-header-icon fi-yellow">❓</div>
+                    <h2>FAQ</h2>
+                </div>
                 <div class="faq-item">
                     <h3>How do I add a new expense?</h3>
                     <p>Tap the "+" button on the home page to quickly enter the amount, select a category and store using the POS-style interface.</p>
@@ -323,78 +568,95 @@
             </div>
 
             <div class="card">
-                <h2>📧 Contact Us</h2>
+                <div class="card-header">
+                    <div class="card-header-icon fi-blue">📧</div>
+                    <h2>Contact Us</h2>
+                </div>
                 <p>If you have any questions, suggestions, or feedback, feel free to reach out:</p>
-                <a class="contact-link" href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a>
+                <a class="contact-link" href="mailto:play4act.app@gmail.com">✉️ play4act.app@gmail.com</a>
             </div>
         </div>
 
         <!-- 日本語 -->
         <div class="lang-content" id="lang-ja">
             <div class="card">
-                <h2>📱 CalThings について</h2>
+                <div class="card-header">
+                    <div class="card-header-icon fi-blue">📱</div>
+                    <h2>CalThings について</h2>
+                </div>
                 <p>CalThings は、モダンな SwiftUI で構築された、フル機能の iOS 向け家計簿・メモアプリです。日々の収支管理、予算設定、メモ作成を簡単に行え、旧暦表示やスマートリマインダー機能も統合しています。</p>
                 <div class="feature-grid">
                     <div class="feature-item">
-                        <div class="icon">💰</div>
+                        <div class="feature-icon fi-coral">💰</div>
                         <div class="title">POS スタイル入力</div>
                         <div class="desc">直感的なインターフェースで金額・カテゴリ・店舗を素早く入力</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📊</div>
+                        <div class="feature-icon fi-blue">📊</div>
                         <div class="title">予算管理</div>
                         <div class="desc">カテゴリ別予算を設定し、支出をリアルタイムで追跡</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📝</div>
+                        <div class="feature-icon fi-yellow">📝</div>
                         <div class="title">メモ機能</div>
                         <div class="desc">メモ、タグ分類、ピン留め、支出との連携</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📈</div>
+                        <div class="feature-icon fi-green">📈</div>
                         <div class="title">統計分析</div>
                         <div class="desc">収支トレンドチャート、カテゴリ別円グラフ</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🌙</div>
+                        <div class="feature-icon fi-purple">🌙</div>
                         <div class="title">旧暦対応</div>
                         <div class="desc">旧暦（農暦）表示、中国語日付フォーマット</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🔔</div>
+                        <div class="feature-icon fi-coral">🔔</div>
                         <div class="title">スマートリマインダー</div>
                         <div class="desc">1回限り、毎日、毎週、毎月など多様な周期設定</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">💱</div>
+                        <div class="feature-icon fi-mint">💱</div>
                         <div class="title">マルチ通貨対応</div>
                         <div class="desc">外貨記録と自動為替レート換算</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🏷️</div>
+                        <div class="feature-icon fi-blue">🏷️</div>
                         <div class="title">カスタムカテゴリ</div>
                         <div class="desc">収支カテゴリを追加・編集、アイコンと色を自由に選択</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">🌗</div>
+                        <div class="feature-icon fi-purple">🌗</div>
                         <div class="title">ダークモード</div>
                         <div class="desc">ライト・ダークテーマ対応、システム設定に自動追従</div>
                     </div>
                     <div class="feature-item">
-                        <div class="icon">📁</div>
+                        <div class="feature-icon fi-green">📁</div>
                         <div class="title">データバックアップ</div>
                         <div class="desc">CSV インポート・エクスポートで安心保存・復元</div>
                     </div>
                 </div>
             </div>
 
-            <div class="card">
-                <h2>⭐ プレミアム会員</h2>
-                <p>プレミアムにアップグレードすると、トレンドチャートやカテゴリ別円グラフなど、完全な統計分析機能をご利用いただけます。</p>
+            <div class="premium-banner">
+                <div class="card-header">
+                    <div class="card-header-icon">⭐</div>
+                    <h2>プレミアム会員</h2>
+                </div>
+                <p>プレミアムにアップグレードすると、完全な統計分析機能で家計を全面的に把握できます。</p>
+                <div class="premium-features">
+                    <span class="premium-tag">📈 トレンドチャート</span>
+                    <span class="premium-tag">🥧 カテゴリ別円グラフ</span>
+                    <span class="premium-tag">📊 収支分析</span>
+                </div>
             </div>
 
             <div class="card">
-                <h2>❓ よくある質問</h2>
+                <div class="card-header">
+                    <div class="card-header-icon fi-yellow">❓</div>
+                    <h2>よくある質問</h2>
+                </div>
                 <div class="faq-item">
                     <h3>新しい支出を追加するには？</h3>
                     <p>ホーム画面の「+」ボタンをタップすると、POS スタイルのインターフェースで金額入力、カテゴリ・店舗の選択ができます。</p>
@@ -430,16 +692,19 @@
             </div>
 
             <div class="card">
-                <h2>📧 お問い合わせ</h2>
+                <div class="card-header">
+                    <div class="card-header-icon fi-blue">📧</div>
+                    <h2>お問い合わせ</h2>
+                </div>
                 <p>ご質問、ご提案、フィードバックがございましたら、お気軽にご連絡ください：</p>
-                <a class="contact-link" href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a>
+                <a class="contact-link" href="mailto:play4act.app@gmail.com">✉️ play4act.app@gmail.com</a>
             </div>
         </div>
     </div>
 
     <div class="footer">
         <p>&copy; 2026 CalThings. All rights reserved.</p>
-        <p style="margin-top: 4px;"><a href="privacy.html" id="privacy-link">隱私權政策</a></p>
+        <p style="margin-top: 6px;"><a href="privacy.html" id="privacy-link">隱私權政策</a></p>
     </div>
 
     <script>
