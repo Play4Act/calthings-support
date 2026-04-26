@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sI https://calthings-support.play4act.tw/.well-known/apple-app-site-association)",
+      "Bash(curl -sI https://play4act.github.io/calthings-support/.well-known/apple-app-site-association)",
+      "Bash(curl *)"
+    ]
+  }
+}
