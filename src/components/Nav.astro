@@ -31,12 +31,7 @@ const navLinks = [
       {navLinks.map(link => (
         <a
           href={link.href}
-          class={[
-            'px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors',
-            currentPage === link.key
-              ? 'bg-ocean-foam text-ocean-deep'
-              : 'text-gray-600 hover:text-ocean-deep hover:bg-gray-50',
-          ].join(' ')}
+          class="px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors text-gray-600 hover:text-ocean-deep hover:bg-gray-50"
         >
           {link.label}
         </a>
