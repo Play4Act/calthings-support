@@ -14,8 +14,8 @@ const pathSuffix = Astro.url.pathname.replace(/^\/(zh|en|ja)/, '') || '/';
 
 const navLinks = [
   { key: 'home', label: i18n.nav.home, href: `/${lang}/` },
-  { key: 'faq', label: i18n.nav.faq, href: `/${lang}/faq/` },
   { key: 'announcements', label: i18n.nav.announcements, href: `/${lang}/announcements/` },
+  { key: 'faq', label: i18n.nav.faq, href: `/${lang}/faq/` },
   { key: 'terms', label: i18n.nav.terms, href: `/${lang}/terms/` },
   { key: 'privacy', label: i18n.nav.privacy, href: `/${lang}/privacy/` },
 ];
