@@ -9,7 +9,6 @@ interface Props {
 const { lang, currentPage } = Astro.props;
 const i18n = t[lang];
 
-// Get the path suffix (everything after /zh, /en, /ja)
 const pathSuffix = Astro.url.pathname.replace(/^\/(zh|en|ja)/, '') || '/';
 
 const navLinks = [
@@ -22,15 +21,13 @@ const navLinks = [
 ---
 
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
-  <nav class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
-    <!-- Logo -->
-    <a href={`/${lang}/`} class="flex items-center gap-2 shrink-0 font-bold text-ocean-deep text-lg">
+  <!-- Row 1: Logo + Nav tabs -->
+  <div class="max-w-5xl mx-auto px-4 h-12 flex items-center gap-3">
+    <a href={`/${lang}/`} class="flex items-center gap-2 shrink-0 font-bold text-ocean-deep text-lg mr-2">
       <span class="text-2xl">📒</span>
       <span class="hidden sm:inline">CalThings</span>
     </a>
-
-    <!-- Nav links -->
-    <div class="flex items-center gap-0.5 overflow-x-auto">
+    <nav class="flex items-center gap-0.5 overflow-x-auto">
       {navLinks.map(link => (
         <a
           href={link.href}
@@ -44,23 +41,25 @@ const navLinks = [
           {link.label}
         </a>
       ))}
-    </div>
+    </nav>
+  </div>
 
-    <!-- Language switcher -->
-    <div class="flex items-center gap-1 shrink-0">
+  <!-- Row 2: Language switcher -->
+  <div class="border-t border-gray-100 bg-gray-50/70">
+    <div class="max-w-5xl mx-auto px-4 h-8 flex items-center gap-1">
       {LANGS.map(l => (
         <a
           href={`/${l}${pathSuffix}`}
           class={[
-            'px-2.5 py-1 rounded-md text-xs font-semibold transition-colors',
+            'px-3 py-0.5 rounded-md text-xs font-semibold transition-colors',
             l === lang
               ? 'bg-ocean-deep text-white'
-              : 'text-gray-500 hover:bg-gray-100',
+              : 'text-gray-500 hover:bg-gray-200',
           ].join(' ')}
         >
           {getLangLabel(l)}
         </a>
       ))}
     </div>
-  </nav>
+  </div>
 </header>
