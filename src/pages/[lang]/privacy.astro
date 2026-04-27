@@ -1,0 +1,194 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { t, LANGS, type Lang } from '../../i18n';
+
+export function getStaticPaths() {
+  return LANGS.map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const i18n = t[lang];
+---
+
+<Layout lang={lang} title={i18n.privacy.title} currentPage="privacy">
+  <div class="bg-gradient-to-br from-ocean-deep via-ocean-blue to-ocean-light text-white py-12 px-4 text-center">
+    <div class="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl text-2xl mb-4">🔒</div>
+    <h1 class="text-3xl font-extrabold tracking-tight">{i18n.privacy.title}</h1>
+    <p class="text-white/70 text-sm mt-2">{i18n.privacy.updated}</p>
+  </div>
+
+  <div class="max-w-2xl mx-auto px-4 py-10">
+    <div class="bg-white rounded-2xl p-7 shadow-sm border border-gray-100 prose prose-sm max-w-none
+      prose-headings:text-gray-800 prose-headings:font-bold prose-headings:mt-6 prose-headings:mb-2
+      prose-p:text-gray-600 prose-p:leading-relaxed
+      prose-a:text-ocean-blue
+      prose-ul:text-gray-600 prose-li:marker:text-ocean-blue
+      prose-strong:text-gray-800">
+
+      {lang === 'zh' && (
+        <>
+          <h2>概述</h2>
+          <p>CalThings（以下稱「本應用程式」）深度重視您的隱私權。本隱私權政策說明我們如何處理您的個人資訊。</p>
+
+          <h2>資料收集</h2>
+          <ul>
+            <li>CalThings 不會收集任何個人資料</li>
+            <li>所有記帳與記事資料僅儲存在您的裝置上</li>
+            <li>我們不會存取或上傳您的財務資訊</li>
+            <li>應用程式不需要網路連線即可正常運作</li>
+          </ul>
+
+          <h2>資料儲存</h2>
+          <ul>
+            <li>所有資料使用 iOS 內建的 Core Data 儲存在本地裝置</li>
+            <li>刪除應用程式時，所有資料將一併移除</li>
+            <li>支援 CSV 匯出功能，讓您完全控制自己的資料</li>
+          </ul>
+
+          <h2>第三方服務</h2>
+          <p>本應用程式使用以下第三方服務，這些服務可能會收集匿名的使用資料：</p>
+          <ul>
+            <li><strong>Firebase Analytics</strong> — 收集匿名使用統計（如功能使用頻率），不連結個人身份</li>
+            <li><strong>Firebase Cloud Messaging</strong> — 用於發送推播通知，僅使用裝置的推播 Token</li>
+            <li><strong>Firebase Remote Config</strong> — 用於遠端調整應用程式設定，不收集個人資料</li>
+            <li><strong>Apple StoreKit</strong> — 內購訂閱由 Apple 處理，本應用程式不會存取您的付款資訊</li>
+            <li>不使用任何第三方廣告服務</li>
+          </ul>
+
+          <h2>權限使用</h2>
+          <p>本應用程式可能會請求以下權限，所有權限皆為可選，拒絕授權不影響基本記帳與記事功能：</p>
+          <ul>
+            <li><strong>通知權限</strong> — 用於記帳提醒與推播通知</li>
+            <li><strong>相機權限</strong> — 用於拍攝發票或收據照片附加至帳單</li>
+            <li><strong>照片圖庫權限</strong> — 用於從相簿選擇照片附加至帳單</li>
+            <li><strong>日曆權限</strong> — 用於在記事列表中顯示今日行程</li>
+            <li><strong>提醒事項權限</strong> — 用於在記事列表中顯示待辦事項</li>
+          </ul>
+
+          <h2>內購與訂閱</h2>
+          <p>本應用程式透過 Apple 的 StoreKit 提供訂閱服務。所有付款資訊由 Apple 處理，本應用程式不會存取您的付款資訊。</p>
+
+          <h2>兒童隱私</h2>
+          <p>本應用程式不針對 13 歲以下兒童，也不會刻意收集兒童的個人資訊。</p>
+
+          <h2>隱私權政策的變更</h2>
+          <p>本隱私權政策可能會根據法律要求或功能更新進行修正。重大變更將在應用程式內提前通知。</p>
+
+          <h2>聯絡我們</h2>
+          <p>如有隱私相關問題，請聯繫：<a href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a></p>
+          <p>我們會在 48 小時內回覆您的查詢。您可以要求查看、修正或刪除相關資料。</p>
+        </>
+      )}
+
+      {lang === 'en' && (
+        <>
+          <h2>Overview</h2>
+          <p>CalThings (hereinafter referred to as "the App") deeply values your privacy. This Privacy Policy explains how we handle your personal information.</p>
+
+          <h2>Data Collection</h2>
+          <ul>
+            <li>CalThings does not collect any personal data</li>
+            <li>All accounting and note data is stored only on your device</li>
+            <li>We do not access or upload your financial information</li>
+            <li>The app works normally without an internet connection</li>
+          </ul>
+
+          <h2>Data Storage</h2>
+          <ul>
+            <li>All data is stored locally using iOS built-in Core Data</li>
+            <li>When the app is deleted, all data will be removed</li>
+            <li>CSV export features let you fully control your own data</li>
+          </ul>
+
+          <h2>Third-Party Services</h2>
+          <p>The App uses the following third-party services, which may collect anonymous usage data:</p>
+          <ul>
+            <li><strong>Firebase Analytics</strong> — Collects anonymous usage statistics (e.g., feature usage frequency), not linked to personal identity</li>
+            <li><strong>Firebase Cloud Messaging</strong> — Used to send push notifications, only uses the device's push token</li>
+            <li><strong>Firebase Remote Config</strong> — Used to remotely adjust app settings, does not collect personal data</li>
+            <li><strong>Apple StoreKit</strong> — In-app subscriptions are handled by Apple; this app does not access your payment information</li>
+            <li>No third-party advertising services are used</li>
+          </ul>
+
+          <h2>Permission Usage</h2>
+          <p>The App may request the following permissions. All permissions are optional; denying access does not affect basic accounting and note features:</p>
+          <ul>
+            <li><strong>Notifications</strong> — Used for accounting reminders and push notifications</li>
+            <li><strong>Camera</strong> — Used to take photos of receipts to attach to bills</li>
+            <li><strong>Photo Library</strong> — Used to select photos from your album to attach to bills</li>
+            <li><strong>Calendar</strong> — Used to display today's events in the notes list</li>
+            <li><strong>Reminders</strong> — Used to display to-do items in the notes list</li>
+          </ul>
+
+          <h2>In-App Purchases & Subscriptions</h2>
+          <p>The App offers subscription services through Apple's StoreKit. All payment information is handled by Apple; the App does not access your payment information.</p>
+
+          <h2>Children's Privacy</h2>
+          <p>The App is not directed at children under 13 and does not intentionally collect personal information from children.</p>
+
+          <h2>Changes to This Policy</h2>
+          <p>This Privacy Policy may be revised as required by law or with feature updates. Significant changes will be notified in advance within the app.</p>
+
+          <h2>Contact Us</h2>
+          <p>For privacy-related inquiries, please contact: <a href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a></p>
+          <p>We will respond to your inquiry within 48 hours. You may request to view, correct, or delete your data.</p>
+        </>
+      )}
+
+      {lang === 'ja' && (
+        <>
+          <h2>概要</h2>
+          <p>CalThings（以下「本アプリ」）はお客様のプライバシーを大切にしています。このプライバシーポリシーは、個人情報の取り扱い方法について説明します。</p>
+
+          <h2>データ収集</h2>
+          <ul>
+            <li>CalThingsは個人データを収集しません</li>
+            <li>すべての帳簿・メモデータはお客様のデバイスのみに保存されます</li>
+            <li>お客様の財務情報にアクセスしたり、アップロードしたりすることはありません</li>
+            <li>インターネット接続なしでも正常に動作します</li>
+          </ul>
+
+          <h2>データストレージ</h2>
+          <ul>
+            <li>すべてのデータはiOS内蔵のCore Dataを使ってローカルに保存されます</li>
+            <li>アプリを削除すると、すべてのデータが削除されます</li>
+            <li>CSVエクスポート機能でお客様のデータを完全に管理できます</li>
+          </ul>
+
+          <h2>サードパーティサービス</h2>
+          <p>本アプリは以下のサードパーティサービスを使用しており、匿名の利用データを収集する場合があります：</p>
+          <ul>
+            <li><strong>Firebase Analytics</strong> — 匿名の利用統計を収集し、個人を特定しません</li>
+            <li><strong>Firebase Cloud Messaging</strong> — プッシュ通知の送信に使用します</li>
+            <li><strong>Firebase Remote Config</strong> — アプリ設定のリモート調整に使用します</li>
+            <li><strong>Apple StoreKit</strong> — アプリ内サブスクリプションはAppleが処理します</li>
+            <li>サードパーティの広告サービスは使用していません</li>
+          </ul>
+
+          <h2>権限の使用</h2>
+          <p>本アプリは以下の権限を要求する場合があります。すべての権限は任意です：</p>
+          <ul>
+            <li><strong>通知権限</strong> — 帳簿リマインダーとプッシュ通知に使用</li>
+            <li><strong>カメラ権限</strong> — レシートの写真を撮影するために使用</li>
+            <li><strong>フォトライブラリ権限</strong> — アルバムから写真を選択するために使用</li>
+            <li><strong>カレンダー権限</strong> — 本日の予定を表示するために使用</li>
+            <li><strong>リマインダー権限</strong> — ToDoを表示するために使用</li>
+          </ul>
+
+          <h2>アプリ内課金とサブスクリプション</h2>
+          <p>本アプリはAppleのStoreKitを通じてサブスクリプションサービスを提供しています。すべてのお支払い情報はAppleが処理します。</p>
+
+          <h2>お子様のプライバシー</h2>
+          <p>本アプリは13歳未満のお子様を対象としておらず、お子様の個人情報を収集することはありません。</p>
+
+          <h2>ポリシーの変更</h2>
+          <p>本プライバシーポリシーは、法律の要件や機能更新に応じて修正される場合があります。</p>
+
+          <h2>お問い合わせ</h2>
+          <p>プライバシーに関するお問い合わせ：<a href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a></p>
+          <p>48時間以内にご返答いたします。</p>
+        </>
+      )}
+    </div>
+  </div>
+</Layout>

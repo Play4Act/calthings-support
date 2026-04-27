@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  currentPage?: 'home' | 'faq' | 'announcements' | 'terms' | 'privacy';
+}
+
+const { lang, title, description, currentPage = 'home' } = Astro.props;
+const i18n = t[lang];
+const pageTitle = title ? `${title} | CalThings` : 'CalThings - Support';
+const pageDesc = description ?? i18n.about.desc;
+---
+
+<!DOCTYPE html>
+<html lang={lang === 'zh' ? 'zh-Hant' : lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDesc} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <!-- Alternate language links -->
+  <link rel="alternate" hreflang="zh-Hant" href={`/zh${Astro.url.pathname.replace(/^\/(zh|en|ja)/, '')}`} />
+  <link rel="alternate" hreflang="en" href={`/en${Astro.url.pathname.replace(/^\/(zh|en|ja)/, '')}`} />
+  <link rel="alternate" hreflang="ja" href={`/ja${Astro.url.pathname.replace(/^\/(zh|en|ja)/, '')}`} />
+</head>
+<body class="min-h-screen flex flex-col text-gray-900">
+  <Nav lang={lang} currentPage={currentPage} />
+  <main class="flex-1">
+    <slot />
+  </main>
+  <Footer lang={lang} />
+</body>
+</html>

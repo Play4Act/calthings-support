@@ -1,0 +1,21 @@
+---
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const i18n = t[lang];
+---
+
+<footer class="border-t border-gray-100 bg-white mt-12">
+  <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+    <p>{i18n.footer.rights}</p>
+    <div class="flex items-center gap-4">
+      <a href={`/${lang}/terms/`} class="hover:text-ocean-blue transition-colors">{i18n.nav.terms}</a>
+      <a href={`/${lang}/privacy/`} class="hover:text-ocean-blue transition-colors">{i18n.nav.privacy}</a>
+      <a href="mailto:play4act.app@gmail.com" class="hover:text-ocean-blue transition-colors">play4act.app@gmail.com</a>
+    </div>
+  </div>
+</footer>

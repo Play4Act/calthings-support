@@ -1,0 +1,169 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { t, LANGS, type Lang } from '../../i18n';
+
+export function getStaticPaths() {
+  return LANGS.map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const i18n = t[lang];
+---
+
+<Layout lang={lang} title={i18n.terms.title} currentPage="terms">
+  <div class="bg-gradient-to-br from-ocean-deep via-ocean-blue to-ocean-light text-white py-12 px-4 text-center">
+    <div class="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl text-2xl mb-4">📄</div>
+    <h1 class="text-3xl font-extrabold tracking-tight">{i18n.terms.title}</h1>
+    <p class="text-white/70 text-sm mt-2">{i18n.terms.updated}</p>
+  </div>
+
+  <div class="max-w-2xl mx-auto px-4 py-10">
+    <div class="bg-white rounded-2xl p-7 shadow-sm border border-gray-100 prose prose-sm max-w-none
+      prose-headings:text-gray-800 prose-headings:font-bold prose-headings:mt-6 prose-headings:mb-2
+      prose-p:text-gray-600 prose-p:leading-relaxed
+      prose-a:text-ocean-blue
+      prose-ul:text-gray-600 prose-li:marker:text-ocean-blue
+      prose-strong:text-gray-800">
+
+      {lang === 'zh' && (
+        <>
+          <p>歡迎使用 CalThings。使用本應用程式即表示您同意以下使用條款。如果您不同意這些條款，請勿使用本應用程式。</p>
+
+          <h2>1. 接受條款</h2>
+          <p>您使用 CalThings 即表示您已閱讀、理解並同意受本使用條款的約束。我們保留隨時修改這些條款的權利，修改後的條款將公告於本頁面。</p>
+
+          <h2>2. 應用程式授權</h2>
+          <p>我們授予您個人、非商業、不可轉讓的有限授權，以在您擁有或控制的 Apple 裝置上使用 CalThings，並受 App Store 服務條款約束。</p>
+          <ul>
+            <li>您不得對應用程式進行反向工程、反編譯或反彙編</li>
+            <li>您不得複製、修改或分發應用程式的任何部分</li>
+            <li>您不得使用本應用程式進行任何違法活動</li>
+          </ul>
+
+          <h2>3. 使用者資料</h2>
+          <p>您在 CalThings 中輸入的所有資料（記帳記錄、記事等）均屬於您的個人資產。您負責自行備份您的資料。刪除應用程式後，本地儲存的資料將無法恢復。</p>
+
+          <h2>4. 訂閱與付款</h2>
+          <p>CalThings 提供進階功能的訂閱服務：</p>
+          <ul>
+            <li>訂閱費用將透過 Apple App Store 帳戶收取</li>
+            <li>訂閱在到期前 24 小時自動續訂，除非您在該時間點前取消</li>
+            <li>您可以在 Apple ID 帳戶設定中管理或取消訂閱</li>
+            <li>免費試用期（如有）在購買訂閱後將失去任何未使用部分</li>
+            <li>所有付款由 Apple 處理，適用 Apple 的退款政策</li>
+          </ul>
+
+          <h2>5. 免責聲明</h2>
+          <p>CalThings 以「現狀」提供，不附任何明示或暗示的保證。我們不對以下情況負責：</p>
+          <ul>
+            <li>因使用或無法使用本應用程式而造成的資料遺失</li>
+            <li>應用程式中斷、錯誤或不準確的計算結果</li>
+            <li>任何間接、附帶或衍生性損害</li>
+          </ul>
+
+          <h2>6. 智慧財產權</h2>
+          <p>CalThings 應用程式及其所有內容、功能與設計均受著作權及其他智慧財產權法律保護，版權歸屬於開發者。</p>
+
+          <h2>7. 條款變更</h2>
+          <p>我們保留隨時修改本使用條款的權利。重大變更將透過應用程式通知您。繼續使用本應用程式即表示接受修改後的條款。</p>
+
+          <h2>8. 聯絡我們</h2>
+          <p>如有任何問題，請聯繫：<a href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a></p>
+        </>
+      )}
+
+      {lang === 'en' && (
+        <>
+          <p>Welcome to CalThings. By using this app, you agree to the following Terms of Service. If you do not agree to these terms, please do not use the app.</p>
+
+          <h2>1. Acceptance of Terms</h2>
+          <p>By using CalThings, you confirm that you have read, understood, and agree to be bound by these Terms. We reserve the right to modify these terms at any time; updated terms will be posted on this page.</p>
+
+          <h2>2. App License</h2>
+          <p>We grant you a limited, personal, non-commercial, non-transferable license to use CalThings on Apple devices you own or control, subject to the App Store Terms of Service.</p>
+          <ul>
+            <li>You may not reverse-engineer, decompile, or disassemble the app</li>
+            <li>You may not copy, modify, or distribute any part of the app</li>
+            <li>You may not use the app for any unlawful purpose</li>
+          </ul>
+
+          <h2>3. User Data</h2>
+          <p>All data you enter in CalThings (expense records, notes, etc.) belongs to you. You are responsible for backing up your data. Data stored locally cannot be recovered after uninstalling the app.</p>
+
+          <h2>4. Subscriptions & Payments</h2>
+          <p>CalThings offers a subscription for premium features:</p>
+          <ul>
+            <li>Subscription fees are charged through your Apple App Store account</li>
+            <li>Subscriptions auto-renew 24 hours before expiry unless cancelled beforehand</li>
+            <li>You can manage or cancel subscriptions in your Apple ID account settings</li>
+            <li>Any unused portion of a free trial is forfeited upon purchase</li>
+            <li>All payments are processed by Apple; Apple's refund policy applies</li>
+          </ul>
+
+          <h2>5. Disclaimer</h2>
+          <p>CalThings is provided "as is" without warranties of any kind. We are not liable for:</p>
+          <ul>
+            <li>Data loss arising from use or inability to use the app</li>
+            <li>App interruptions, errors, or inaccurate calculations</li>
+            <li>Any indirect, incidental, or consequential damages</li>
+          </ul>
+
+          <h2>6. Intellectual Property</h2>
+          <p>The CalThings app and all its content, features, and design are protected by copyright and other intellectual property laws, and remain the property of the developer.</p>
+
+          <h2>7. Changes to Terms</h2>
+          <p>We reserve the right to modify these Terms at any time. Significant changes will be communicated via the app. Continued use of the app constitutes acceptance of the modified terms.</p>
+
+          <h2>8. Contact Us</h2>
+          <p>For any questions, please contact: <a href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a></p>
+        </>
+      )}
+
+      {lang === 'ja' && (
+        <>
+          <p>CalThingsをご利用いただきありがとうございます。本アプリを使用することで、以下の利用規約に同意したものとみなされます。</p>
+
+          <h2>1. 規約への同意</h2>
+          <p>CalThingsを使用することで、本利用規約を読み、理解し、同意したことを確認します。当社は規約をいつでも変更する権利を留保します。</p>
+
+          <h2>2. アプリのライセンス</h2>
+          <p>当社は、App Storeの利用規約に従い、お客様が所有または管理するAppleデバイスでCalThingsを使用するための限定的な個人ライセンスを付与します。</p>
+          <ul>
+            <li>アプリのリバースエンジニアリングは禁止されています</li>
+            <li>アプリのコピー・修正・配布は禁止されています</li>
+            <li>違法な目的でアプリを使用しないでください</li>
+          </ul>
+
+          <h2>3. ユーザーデータ</h2>
+          <p>CalThingsに入力したすべてのデータ（帳簿記録、メモなど）はお客様の所有物です。データのバックアップはお客様の責任です。アプリを削除すると、ローカルに保存されたデータは復元できません。</p>
+
+          <h2>4. サブスクリプションと支払い</h2>
+          <p>CalThingsはプレミアム機能のサブスクリプションを提供しています：</p>
+          <ul>
+            <li>サブスクリプション料金はApple App Storeアカウントを通じて請求されます</li>
+            <li>サブスクリプションは期限の24時間前に自動更新されます</li>
+            <li>Apple IDのアカウント設定でサブスクリプションを管理・解約できます</li>
+            <li>すべての支払いはAppleが処理します</li>
+          </ul>
+
+          <h2>5. 免責事項</h2>
+          <p>CalThingsは「現状のまま」提供されます。当社は以下について責任を負いません：</p>
+          <ul>
+            <li>アプリの使用または使用不能によるデータの損失</li>
+            <li>アプリの中断、エラー、または不正確な計算</li>
+            <li>間接的、付随的、または派生的な損害</li>
+          </ul>
+
+          <h2>6. 知的財産権</h2>
+          <p>CalThingsアプリとそのすべてのコンテンツ、機能、デザインは著作権およびその他の知的財産権法によって保護されています。</p>
+
+          <h2>7. 規約の変更</h2>
+          <p>当社はいつでも本利用規約を変更する権利を留保します。重要な変更はアプリを通じてお知らせします。</p>
+
+          <h2>8. お問い合わせ</h2>
+          <p>ご質問は：<a href="mailto:play4act.app@gmail.com">play4act.app@gmail.com</a></p>
+        </>
+      )}
+    </div>
+  </div>
+</Layout>

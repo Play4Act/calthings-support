@@ -1,0 +1,11 @@
+  {
+    "applinks": {
+      "details": [{
+        "appIDs": [
+          "87ASL7GP9K.tw.com.play4act.CalThings",
+          "87ASL7GP9K.tw.com.play4act.CalThings.beta"
+        ],
+        "components": [{ "/": "/share/*" }]
+      }]
+    }
+  }

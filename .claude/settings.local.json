@@ -3,7 +3,23 @@
     "allow": [
       "Bash(curl -sI https://calthings-support.play4act.tw/.well-known/apple-app-site-association)",
       "Bash(curl -sI https://play4act.github.io/calthings-support/.well-known/apple-app-site-association)",
-      "Bash(curl *)"
+      "Bash(curl *)",
+      "Bash(npm --version)",
+      "Bash(npm create *)",
+      "Bash(cp better-belt/astro.config.mjs ./astro.config.mjs)",
+      "Bash(cp better-belt/package.json ./package.json)",
+      "Bash(cp better-belt/tsconfig.json ./tsconfig.json)",
+      "Bash(cp -r better-belt/.vscode ./.vscode)",
+      "Bash(cat better-belt/.gitignore)",
+      "Bash(mkdir -p public/.well-known)",
+      "Bash(cp .well-known/apple-app-site-association public/.well-known/apple-app-site-association)",
+      "Bash(cp _headers public/_headers)",
+      "Bash(mv public_astro/favicon.ico public/favicon.ico)",
+      "Bash(mv public_astro/favicon.svg public/favicon.svg)",
+      "Bash(npm install *)",
+      "Bash(npx astro *)",
+      "Bash(npm run *)",
+      "Bash(kill %1)"
     ]
   }
 }

@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { t, LANGS, type Lang } from '../../i18n';
+
+export function getStaticPaths() {
+  return LANGS.map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const i18n = t[lang];
+---
+
+<Layout lang={lang} title={i18n.faq.title} currentPage="faq">
+  <!-- Page header -->
+  <div class="bg-gradient-to-br from-ocean-deep via-ocean-blue to-ocean-light text-white py-12 px-4 text-center">
+    <div class="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm border border-white/30 rounded-2xl text-2xl mb-4">❓</div>
+    <h1 class="text-3xl font-extrabold tracking-tight">{i18n.faq.title}</h1>
+  </div>
+
+  <div class="max-w-2xl mx-auto px-4 py-10">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 divide-y divide-gray-100">
+      {i18n.faq.items.map((item, idx) => (
+        <details class="group p-6 cursor-pointer" open={idx === 0}>
+          <summary class="flex items-start gap-3 list-none select-none">
+            <span class="shrink-0 mt-0.5 w-6 h-6 rounded-lg bg-ocean-foam text-ocean-deep text-xs font-bold flex items-center justify-center">Q</span>
+            <span class="text-sm font-semibold text-gray-800 flex-1 group-open:text-ocean-deep transition-colors">{item.q}</span>
+            <span class="shrink-0 text-gray-400 group-open:rotate-180 transition-transform duration-200 mt-0.5">▾</span>
+          </summary>
+          <p class="mt-3 text-sm text-gray-600 leading-relaxed pl-9">{item.a}</p>
+        </details>
+      ))}
+    </div>
+
+    <div class="mt-8 text-center">
+      <p class="text-sm text-gray-500 mb-4">
+        {lang === 'zh' ? '找不到答案？歡迎直接聯絡我們。' : lang === 'en' ? "Can't find an answer? Feel free to contact us." : '答えが見つかりませんか？お気軽にお問い合わせください。'}
+      </p>
+      <a
+        href="mailto:play4act.app@gmail.com"
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-ocean-deep to-ocean-blue text-white font-semibold px-5 py-2.5 rounded-xl shadow-sm hover:-translate-y-0.5 transition-all duration-200"
+      >
+        ✉️ play4act.app@gmail.com
+      </a>
+    </div>
+  </div>
+</Layout>
