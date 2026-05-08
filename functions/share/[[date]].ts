@@ -2,8 +2,8 @@ interface Env {}
 
 const APP_STORE_URL = 'https://apps.apple.com/tw/app/calthings/id6757834850';
 const APP_STORE_DEEPLINK = 'https://apps.apple.com/app/6757834850';
-const SITE_URL = 'https://support.calthings.app';
-const OG_IMAGE = `${SITE_URL}/icon-256.png`;
+const SITE_URL = 'https://calthings.app';
+const OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 type Lang = 'zh' | 'en' | 'ja';
 
@@ -104,8 +104,8 @@ export const onRequest: PagesFunction<Env> = async ({ params, request }) => {
 <meta property="og:title" content="${escapeHtml(title)}">
 <meta property="og:description" content="${escapeHtml(desc)}">
 <meta property="og:image" content="${OG_IMAGE}">
-<meta property="og:image:width" content="256">
-<meta property="og:image:height" content="256">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="${url}">
 <meta property="og:locale" content="${lang === 'zh' ? 'zh_TW' : lang === 'ja' ? 'ja_JP' : 'en_US'}">
 <meta name="twitter:card" content="summary_large_image">
