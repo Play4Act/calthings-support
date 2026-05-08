@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://calthings.app/sitemap-index.xml
