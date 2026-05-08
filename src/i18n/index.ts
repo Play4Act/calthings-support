@@ -23,6 +23,10 @@ interface FaqItem {
 
 interface I18n {
   lang: Lang;
+  meta: {
+    siteTitle: string;
+    ogImageAlt: string;
+  };
   nav: {
     home: string;
     faq: string;
@@ -32,7 +36,18 @@ interface I18n {
   };
   hero: {
     subtitle: string;
+    tagline: string;
+    badges: string[];
     downloadBtn: string;
+  };
+  screenshots: {
+    title: string;
+    items: { title: string; desc: string }[];
+  };
+  cta: {
+    title: string;
+    desc: string;
+    btn: string;
   };
   about: {
     title: string;
@@ -82,6 +97,10 @@ interface I18n {
 export const t: Record<Lang, I18n> = {
   zh: {
     lang: 'zh',
+    meta: {
+      siteTitle: 'CalThings｜智慧記帳・輕鬆生活 - iOS 記帳 App',
+      ogImageAlt: 'CalThings - 智慧記帳 iOS App',
+    },
     nav: {
       home: '首頁',
       faq: '常見問題',
@@ -91,7 +110,22 @@ export const t: Record<Lang, I18n> = {
     },
     hero: {
       subtitle: '智慧記帳・輕鬆生活',
+      tagline: 'POS 風格記帳 × 預算管理 × 農曆整合，一個 App 搞定日常收支與記事。',
+      badges: ['免費下載', '本機儲存', '繁體中文'],
       downloadBtn: 'App Store 下載',
+    },
+    screenshots: {
+      title: '產品畫面',
+      items: [
+        { title: 'POS 式快速記帳', desc: '輸入金額、選分類、選商店，一鍵完成' },
+        { title: '預算與統計', desc: '即時花費進度、趨勢圖表、分類餅圖' },
+        { title: '農曆與智慧提醒', desc: '農民曆顯示、備忘錄、週期性提醒' },
+      ],
+    },
+    cta: {
+      title: '立即開始智慧記帳',
+      desc: '免費下載，所有資料只存在你的裝置上。',
+      btn: 'App Store 下載',
     },
     about: {
       title: '關於 CalThings',
@@ -160,6 +194,10 @@ export const t: Record<Lang, I18n> = {
 
   en: {
     lang: 'en',
+    meta: {
+      siteTitle: 'CalThings｜Smart Expense Tracking iOS App',
+      ogImageAlt: 'CalThings - Smart Expense Tracking iOS App',
+    },
     nav: {
       home: 'Home',
       faq: 'FAQ',
@@ -169,7 +207,22 @@ export const t: Record<Lang, I18n> = {
     },
     hero: {
       subtitle: 'Smart Expense Tracking, Simple Life',
+      tagline: 'POS-style entry × Budget management × Lunar calendar — one iOS app for daily expenses and notes.',
+      badges: ['Free Download', 'On-Device Only', 'Multi-Language'],
       downloadBtn: 'Download on App Store',
+    },
+    screenshots: {
+      title: 'App Preview',
+      items: [
+        { title: 'POS-Style Entry', desc: 'Enter amount, pick category and store — done in one tap' },
+        { title: 'Budget & Statistics', desc: 'Real-time progress, trend charts, category pie charts' },
+        { title: 'Lunar Calendar & Reminders', desc: 'Traditional lunar calendar, memos, recurring reminders' },
+      ],
+    },
+    cta: {
+      title: 'Start tracking smarter today',
+      desc: 'Free download. All data stays on your device.',
+      btn: 'Download on App Store',
     },
     about: {
       title: 'About CalThings',
@@ -238,6 +291,10 @@ export const t: Record<Lang, I18n> = {
 
   ja: {
     lang: 'ja',
+    meta: {
+      siteTitle: 'CalThings｜スマート家計簿 iOS アプリ',
+      ogImageAlt: 'CalThings - スマート家計簿 iOS アプリ',
+    },
     nav: {
       home: 'ホーム',
       faq: 'よくある質問',
@@ -247,7 +304,22 @@ export const t: Record<Lang, I18n> = {
     },
     hero: {
       subtitle: 'スマート家計簿・シンプルライフ',
+      tagline: 'POS スタイル入力 × 予算管理 × 旧暦対応 — 日々の家計簿とメモがこれひとつで。',
+      badges: ['無料ダウンロード', 'ローカル保存', '多言語対応'],
       downloadBtn: 'App Store からダウンロード',
+    },
+    screenshots: {
+      title: 'アプリプレビュー',
+      items: [
+        { title: 'POS スタイル入力', desc: '金額・カテゴリ・店舗をワンタップで入力' },
+        { title: '予算と統計', desc: 'リアルタイム進捗・トレンドチャート・円グラフ' },
+        { title: '旧暦とリマインダー', desc: '旧暦表示・メモ・定期リマインダー' },
+      ],
+    },
+    cta: {
+      title: 'スマート家計簿を今すぐ始めよう',
+      desc: '無料ダウンロード。すべてのデータは端末内に保存されます。',
+      btn: 'App Store からダウンロード',
     },
     about: {
       title: 'CalThings について',

@@ -13,8 +13,39 @@ interface Props {
 
 const { lang, title, description, currentPage = 'home' } = Astro.props;
 const i18n = t[lang];
-const pageTitle = title ? `${title} | CalThings` : 'CalThings - Support';
+const pageTitle = title ? `${title} | CalThings` : i18n.meta.siteTitle;
 const pageDesc = description ?? i18n.about.desc;
+
+const SITE_URL = 'https://support.calthings.app';
+const APP_STORE_URL = 'https://apps.apple.com/tw/app/calthings/id6757834850';
+const APP_STORE_ID = '6757834850';
+const canonicalUrl = `${SITE_URL}${Astro.url.pathname}`;
+const ogImage = `${SITE_URL}/og-image.png`;
+const ogLocale = lang === 'zh' ? 'zh_TW' : lang === 'ja' ? 'ja_JP' : 'en_US';
+const pathWithoutLang = Astro.url.pathname.replace(/^\/(zh|en|ja)/, '');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MobileApplication',
+  name: 'CalThings',
+  operatingSystem: 'iOS',
+  applicationCategory: 'FinanceApplication',
+  description: i18n.about.desc,
+  url: SITE_URL,
+  image: ogImage,
+  downloadUrl: APP_STORE_URL,
+  installUrl: APP_STORE_URL,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'CalThings',
+    email: 'play4act.app@gmail.com',
+  },
+};
 ---
 
 <!DOCTYPE html>
@@ -24,12 +55,40 @@ const pageDesc = description ?? i18n.about.desc;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{pageTitle}</title>
   <meta name="description" content={pageDesc} />
+  <link rel="canonical" href={canonicalUrl} />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CalThings" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDesc} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={i18n.meta.ogImageAlt} />
+  <meta property="og:locale" content={ogLocale} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={pageDesc} />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:image:alt" content={i18n.meta.ogImageAlt} />
+
+  <!-- iOS Smart App Banner -->
+  <meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}`} />
+
   <!-- Alternate language links -->
-  <link rel="alternate" hreflang="zh-Hant" href={`/zh${Astro.url.pathname.replace(/^\/(zh|en|ja)/, '')}`} />
-  <link rel="alternate" hreflang="en" href={`/en${Astro.url.pathname.replace(/^\/(zh|en|ja)/, '')}`} />
-  <link rel="alternate" hreflang="ja" href={`/ja${Astro.url.pathname.replace(/^\/(zh|en|ja)/, '')}`} />
+  <link rel="alternate" hreflang="zh-Hant" href={`${SITE_URL}/zh${pathWithoutLang}`} />
+  <link rel="alternate" hreflang="en" href={`${SITE_URL}/en${pathWithoutLang}`} />
+  <link rel="alternate" hreflang="ja" href={`${SITE_URL}/ja${pathWithoutLang}`} />
+  <link rel="alternate" hreflang="x-default" href={`${SITE_URL}/zh${pathWithoutLang}`} />
+
+  <!-- JSON-LD: MobileApplication schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </head>
 <body class="min-h-screen flex flex-col text-gray-900">
   <Nav lang={lang} currentPage={currentPage} />
