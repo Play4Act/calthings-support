@@ -1,0 +1,173 @@
+// Builds public/og-image.svg (with icon-256.png embedded as base64) and
+// renders it to public/og-image.png at 1200x630.
+// Run: node scripts/build-og-image.mjs
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(__dirname, '..');
+const publicDir = path.join(root, 'public');
+
+const iconPath = path.join(publicDir, 'icon-256.png');
+const svgOut = path.join(publicDir, 'og-image.svg');
+const pngOut = path.join(publicDir, 'og-image.png');
+
+const iconB64 = fs.readFileSync(iconPath).toString('base64');
+const iconDataUri = `data:image/png;base64,${iconB64}`;
+
+const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A5F94"/>
+      <stop offset="45%" stop-color="#2173B3"/>
+      <stop offset="100%" stop-color="#73C2ED"/>
+    </linearGradient>
+
+    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD400" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#FFD400" stop-opacity="0"/>
+    </radialGradient>
+
+    <clipPath id="iconClip">
+      <rect width="280" height="280" rx="64" ry="64"/>
+    </clipPath>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="12"/>
+      <feOffset dx="0" dy="8"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.35"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background gradient -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative glows -->
+  <circle cx="200" cy="120" r="380" fill="url(#glow1)"/>
+  <circle cx="1050" cy="540" r="320" fill="url(#glow1)"/>
+  <circle cx="950" cy="100" r="220" fill="url(#glow2)"/>
+
+  <!-- Left: real app icon with iOS-style rounded corners and soft shadow -->
+  <g transform="translate(80, 175)" filter="url(#softShadow)">
+    <!-- White base so any icon transparency stays clean -->
+    <rect width="280" height="280" rx="64" ry="64" fill="#FFFFFF"/>
+    <g clip-path="url(#iconClip)">
+      <image x="0" y="0" width="280" height="280"
+             preserveAspectRatio="xMidYMid slice"
+             href="${iconDataUri}"
+             xlink:href="${iconDataUri}"/>
+    </g>
+    <!-- Subtle inner border to match the rest of the design language -->
+    <rect width="280" height="280" rx="64" ry="64"
+          fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+  </g>
+
+  <!-- Right: Text block -->
+  <g transform="translate(420, 0)">
+    <!-- Brand -->
+    <text x="0" y="220" font-family="-apple-system, BlinkMacSystemFont, 'PingFang TC', 'Helvetica Neue', sans-serif"
+          font-size="96" font-weight="800" fill="#FFFFFF" letter-spacing="-2">CalThings</text>
+
+    <!-- Tagline (zh) -->
+    <text x="0" y="285" font-family="-apple-system, BlinkMacSystemFont, 'PingFang TC', 'Helvetica Neue', sans-serif"
+          font-size="38" font-weight="500" fill="#FFFFFF" opacity="0.95">智慧記帳・輕鬆生活</text>
+
+    <!-- Sub-tagline (en) -->
+    <text x="0" y="330" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif"
+          font-size="24" font-weight="400" fill="#FFFFFF" opacity="0.75">Smart Expense Tracking iOS App</text>
+
+    <!-- Feature pills -->
+    <g transform="translate(0, 380)">
+      <!-- Pill 1: 記帳 (receipt icon) -->
+      <g>
+        <rect width="130" height="44" rx="22" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)"/>
+        <g transform="translate(16, 10)" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 2h14a1 1 0 0 1 1 1v18l-3-2-3 2-3-2-3 2-3-2-3 2V3a1 1 0 0 1 1-1z"/>
+          <line x1="8" y1="8" x2="16" y2="8"/>
+          <line x1="8" y1="12" x2="16" y2="12"/>
+          <line x1="8" y1="16" x2="13" y2="16"/>
+        </g>
+        <text x="50" y="29" font-family="-apple-system, 'PingFang TC', sans-serif"
+              font-size="20" font-weight="600" fill="#FFFFFF">記帳</text>
+      </g>
+      <!-- Pill 2: 預算 (bar chart icon) -->
+      <g transform="translate(140, 0)">
+        <rect width="130" height="44" rx="22" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)"/>
+        <g transform="translate(16, 10)" stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="2" y1="20" x2="22" y2="20" stroke-width="2" fill="none"/>
+          <rect x="4" y="12" width="4" height="7" rx="1"/>
+          <rect x="10" y="8" width="4" height="11" rx="1"/>
+          <rect x="16" y="4" width="4" height="15" rx="1"/>
+        </g>
+        <text x="50" y="29" font-family="-apple-system, 'PingFang TC', sans-serif"
+              font-size="20" font-weight="600" fill="#FFFFFF">預算</text>
+      </g>
+      <!-- Pill 3: 農曆 (moon icon) -->
+      <g transform="translate(280, 0)">
+        <rect width="130" height="44" rx="22" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)"/>
+        <g transform="translate(16, 10)" fill="#FFFFFF">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </g>
+        <text x="50" y="29" font-family="-apple-system, 'PingFang TC', sans-serif"
+              font-size="20" font-weight="600" fill="#FFFFFF">農曆</text>
+      </g>
+      <!-- Pill 4: 多幣別 (currency exchange icon) -->
+      <g transform="translate(420, 0)">
+        <rect width="150" height="44" rx="22" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)"/>
+        <g transform="translate(16, 10)" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="17 2 21 6 17 10"/>
+          <path d="M3 11V8a3 3 0 0 1 3-3h15"/>
+          <polyline points="7 22 3 18 7 14"/>
+          <path d="M21 13v3a3 3 0 0 1-3 3H3"/>
+        </g>
+        <text x="50" y="29" font-family="-apple-system, 'PingFang TC', sans-serif"
+              font-size="20" font-weight="600" fill="#FFFFFF">多幣別</text>
+      </g>
+    </g>
+
+    <!-- App Store badge -->
+    <g transform="translate(0, 460)" filter="url(#softShadow)">
+      <rect width="240" height="64" rx="14" fill="#000000"/>
+      <!-- Apple logo -->
+      <g transform="translate(22, 16)">
+        <path d="M22.7 19.2c0-2.6 1.2-4.6 3.5-6-1.3-1.9-3.4-3-6-3.2-2.5-.2-5.3 1.5-6.3 1.5-1.1 0-3.5-1.4-5.5-1.4-4 .1-8.3 3.2-8.3 9.5 0 1.9.3 3.8 1 5.8.9 2.6 4.2 9 7.7 8.9 1.8 0 3.1-1.3 5.4-1.3 2.3 0 3.5 1.3 5.5 1.3 3.5 0 6.5-5.9 7.3-8.5-4.7-2.2-4.4-6.4-4.3-6.6zm-4-12.3c1.9-2.3 1.8-4.4 1.7-5.2-1.7.1-3.7 1.2-4.9 2.5-1.2 1.4-2 3.2-1.8 5.1 1.9.2 3.6-.8 5-2.4z"
+              fill="#FFFFFF"/>
+      </g>
+      <text x="74" y="28" font-family="-apple-system, 'Helvetica Neue', sans-serif"
+            font-size="13" font-weight="400" fill="#FFFFFF">Download on the</text>
+      <text x="74" y="50" font-family="-apple-system, 'Helvetica Neue', sans-serif"
+            font-size="22" font-weight="600" fill="#FFFFFF">App Store</text>
+    </g>
+
+    <!-- iOS marker -->
+    <g transform="translate(265, 478)">
+      <text x="0" y="20" font-family="-apple-system, 'PingFang TC', sans-serif"
+            font-size="16" font-weight="500" fill="#FFFFFF" opacity="0.8">iOS · 免費下載</text>
+      <text x="0" y="42" font-family="-apple-system, 'PingFang TC', sans-serif"
+            font-size="14" font-weight="400" fill="#FFFFFF" opacity="0.6">support.calthings.app</text>
+    </g>
+  </g>
+</svg>
+`;
+
+fs.writeFileSync(svgOut, svg);
+console.log(`Wrote ${path.relative(root, svgOut)} (${(svg.length / 1024).toFixed(1)} KB)`);
+
+await sharp(Buffer.from(svg), { density: 144 })
+  .resize(1200, 630)
+  .png({ compressionLevel: 9 })
+  .toFile(pngOut);
+
+const pngSize = fs.statSync(pngOut).size;
+console.log(`Wrote ${path.relative(root, pngOut)} (${(pngSize / 1024).toFixed(1)} KB)`);
