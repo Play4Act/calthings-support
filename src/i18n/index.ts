@@ -183,7 +183,7 @@ export const t: Record<Lang, I18n> = {
     },
     privacy: {
       title: '隱私權政策',
-      updated: '最後更新日期：2026 年 2 月 27 日',
+      updated: '最後更新日期：2026 年 5 月 12 日',
     },
     footer: {
       rights: '© 2026 CalThings. All rights reserved.',
@@ -280,7 +280,7 @@ export const t: Record<Lang, I18n> = {
     },
     privacy: {
       title: 'Privacy Policy',
-      updated: 'Last updated: February 27, 2026',
+      updated: 'Last updated: May 12, 2026',
     },
     footer: {
       rights: '© 2026 CalThings. All rights reserved.',
@@ -377,7 +377,7 @@ export const t: Record<Lang, I18n> = {
     },
     privacy: {
       title: 'プライバシーポリシー',
-      updated: '最終更新日：2026年2月27日',
+      updated: '最終更新日：2026年5月12日',
     },
     footer: {
       rights: '© 2026 CalThings. All rights reserved.',
