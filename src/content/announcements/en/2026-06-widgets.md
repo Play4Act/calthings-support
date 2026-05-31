@@ -1,6 +1,6 @@
 ---
 title: CalThings Update — Widgets, Scan Feedback & a More Accurate Traditional Calendar
-date: "2026-05-22"
+date: "2026-06-01"
 summary: Lunar Calendar Widget, Home Calendar Widget, scan result reporting, and improved Chong family matching with the full 60-year Sexagenary cycle.
 ---
 

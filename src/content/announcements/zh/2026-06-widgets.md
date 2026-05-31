@@ -1,6 +1,6 @@
 ---
 title: CalThings 更新：桌面 Widget、辨識回報與更精準的傳統曆法
-date: "2026-05-22"
+date: "2026-06-01"
 summary: 農曆 Widget、首頁日曆 Widget、辨識結果回報，以及沖煞比對的傳統曆法升級。
 ---
 
